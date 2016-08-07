@@ -28,6 +28,6 @@ clean:
 
 # Tests
 tester:
-	$(CC) $(CFLAGS) test/tester.cpp $(INC) $(LIB) -o bin/tester
+	$(CC) $(CFLAGS) test/tester.cpp $(filter-out src/main.cpp, $(SOURCES)) $(INC) $(LIB) -o bin/tester
 
 .PHONY: clean
