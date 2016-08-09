@@ -3,8 +3,24 @@
 #include <circle.hpp>
 #include <object.hpp>
 
-bool Object::collides(Object *other) {
-      return this->net->collides(other->position_x - this->position_x,
+double Object::min_x() {
+  return this->position_x + this->net->min_x();
+}
+
+double Object::max_x() {
+  return this->position_x + this->net->max_x();
+}
+
+double Object::min_y() {
+  return this->position_y + this->net->min_y();
+}
+
+double Object::max_y() {
+  return this->position_y + this->net->max_y();
+}
+
+bool Object::collides_object(Object *other) {
+      return this->net->collides_circle(other->position_y - this->position_x,
         other->position_y - this->position_y,
         other->net);
 }
