@@ -21,5 +21,13 @@ int main()
   std::cout << "o1 collides with boundary? " << boundary->collides(o1) << std::endl;
   std::cout << "o2 collides with boundary? " << boundary->collides(o2) << std::endl;
 
+  Object *moving = new Object(0, 0, 1, 0, 1, c1);
+
+  std::cout << "moving position: " << moving->position_x << std::endl;
+
+  moving->recalculate_position(50);
+
+  std::cout << "moving position: " << moving->position_x << std::endl;
+
 	return 0;
 }

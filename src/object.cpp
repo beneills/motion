@@ -19,6 +19,11 @@ double Object::max_y() {
   return this->position_y + this->net->max_y();
 }
 
+void Object::recalculate_position(double ms) {
+  this->position_x += this->velocity_x * ms;
+  this->position_y += this->velocity_y * ms;
+}
+
 bool Object::collides_object(Object *other) {
       return this->net->collides_circle(other->position_y - this->position_x,
         other->position_y - this->position_y,
