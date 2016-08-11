@@ -2,6 +2,7 @@
 
 #include <boundary.hpp>
 #include <circle.hpp>
+#include <map.hpp>
 #include <object.hpp>
 
 int main()
@@ -21,13 +22,16 @@ int main()
   std::cout << "o1 collides with boundary? " << boundary->collides(o1) << std::endl;
   std::cout << "o2 collides with boundary? " << boundary->collides(o2) << std::endl;
 
-  Object *moving = new Object(0, 0, 1, 0, 1, c1);
+  Map *map = new Map(boundary);
 
-  std::cout << "moving position: " << moving->position_x << std::endl;
+  Object *moving = new Object(3, 3, 1, 0, 1, c1);
 
-  moving->recalculate_position(50);
+  map->add_object(moving);
 
-  std::cout << "moving position: " << moving->position_x << std::endl;
+  for (int time = 0; time < 1000; time += 10) {
+    map->print_objects();
+    map->update(10);
+  }
 
 	return 0;
 }

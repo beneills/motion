@@ -5,10 +5,22 @@
 
 // A square boundary for all objects.
 class Boundary {
+public:
   double width;
   double height;
 
 public:
+  // How far are we over the left wall?
+  double collision_depth_left(Object *o);
+
+  // How far are we over the right wall?
+  double collision_depth_right(Object *o);
+
+  // How far are we over the top wall?
+  double collision_depth_top(Object *o);
+
+  // How far are we over the bottom wall?
+  double collision_depth_bottom(Object *o);
 
   // Does the object collide with the left wall?
   bool collides_left(Object *o);
