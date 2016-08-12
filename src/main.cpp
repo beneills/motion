@@ -25,8 +25,10 @@ int main()
   Map *map = new Map(boundary);
 
   Object *moving = new Object(3, 3, 1, 0, 1, c1);
+  Object *solid = new Object(60, 3, 0, 0, 1, c1);
 
   map->add_object(moving);
+  map->add_object(solid);
 
   for (int time = 0; time < 1000; time += 10) {
     map->print_objects();

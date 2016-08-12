@@ -5,7 +5,7 @@
 
 bool ObjectPool::add_object(Object *o) {
   if (this->num_objects < 1000) {
-    memcpy(this->objects[this->num_objects++], o, sizeof(*o));
+    this->objects[this->num_objects++] = new Object(*o);
     return true;
   } else {
     return false;
@@ -22,8 +22,4 @@ Object *ObjectPool::object(unsigned int i) {
 
 ObjectPool::ObjectPool() {
   this->num_objects = 0;
-
-  for (int i = 0; i < 1000; ++i) {
-    this->objects[i] = (Object *) malloc(sizeof(Object));
-  }
 }

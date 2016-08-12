@@ -1,7 +1,15 @@
 #include <iostream>
+#include <cmath>
 
 #include <circle.hpp>
 #include <object.hpp>
+
+#define square(x) ((x)*(x))
+#define modulus(x, y) sqrt( square(x) + square(y) )
+
+double Object::velocity_magnitude() {
+  return modulus( this->velocity_x, this->velocity_y );
+}
 
 double Object::min_x() {
   return this->position_x + this->net->min_x();
@@ -19,13 +27,20 @@ double Object::max_y() {
   return this->position_y + this->net->max_y();
 }
 
+void Object::rotate(double component_x, double component_y) {
+  double rotation_magnitude = modulus(component_x, component_y);
+
+  this->velocity_x = this->velocity_magnitude() * component_x / rotation_magnitude;
+  this->velocity_y = this->velocity_magnitude() * component_y / rotation_magnitude;
+}
+
 void Object::recalculate_position(double ms) {
   this->position_x += this->velocity_x * ms;
   this->position_y += this->velocity_y * ms;
 }
 
 bool Object::collides_object(Object *other) {
-      return this->net->collides_circle(other->position_y - this->position_x,
+      return this->net->collides_circle(other->position_x - this->position_x,
         other->position_y - this->position_y,
         other->net);
 }
@@ -38,7 +53,5 @@ Object::Object(double position_x, double position_y, double velocity_x, double v
   this->velocity_y = velocity_y;
   this->mass = mass;
 
-  // TODO make safer
-  this->net = (Circle *) malloc(sizeof(*net));
-  memcpy(this->net, net, sizeof(*net));
+  this->net = new Circle(*net);
 }

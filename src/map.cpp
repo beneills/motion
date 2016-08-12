@@ -13,6 +13,8 @@ void Map::update(double ms) {
 
     o->recalculate_position(ms);
 
+    // Check for boundary collisions
+
     if ( this->boundary->collides_left(o) ) {
       o->velocity_x = -o->velocity_x;
       o->position_x = this->boundary->collision_depth_left(o);
@@ -32,6 +34,23 @@ void Map::update(double ms) {
       o->velocity_y = -o->velocity_y;
       o->position_y = this->boundary->height - this->boundary->collision_depth_bottom(o);
     }
+
+    // // Check for other object collisions
+    // for (int j = 0; j < this->object_pool->num(); ++j) {
+    //   if ( j != i ) {
+    //     Object *other = this->object_pool->object(j);
+    //
+    //     if ( o->collides_object(other) ) {
+    //       std::cout << "object collision: " << i << " with " << j << std::endl;
+    //
+    //       // TODO properly work out bounce direction
+    //       double delta_x = other->position_x - this->position_x;
+    //       double delta_y = other->position_y - this->position_y;
+    //
+    //
+    //     }
+    //   }
+    // }
   }
 }
 
@@ -47,9 +66,6 @@ void Map::print_objects() {
 }
 
 Map::Map(Boundary *boundary) {
-  // TODO make safer
-  this->boundary = (Boundary *) malloc(sizeof(*this->boundary));
-  memcpy(this->boundary, boundary, sizeof(*boundary));
-
+  this->boundary = new Boundary(*boundary);
   this->object_pool = new ObjectPool;
 }

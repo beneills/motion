@@ -16,6 +16,9 @@ public:
   Circle *net;
 
 public:
+  // The magnitude of the velocity.
+  double velocity_magnitude();
+
   // The object's minimum (absolute) x coordinate.
   double min_x();
 
@@ -27,6 +30,9 @@ public:
 
   // The object's maximum (absolute) y coordinate.
   double max_y();
+
+  // Rotate the object (change its velocity).
+  void rotate(double component_x, double component_y);
 
   // Recalculate the object's position, given elapsed time since last calculation.
   void recalculate_position(double ms);
