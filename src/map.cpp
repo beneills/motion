@@ -8,13 +8,17 @@ bool Map::add_object(Object *o) {
 }
 
 void Map::update(double ms) {
+  // Update positions
+  for (int i = 0; i < this->object_pool->num(); ++i) {
+    Object *o = this->object_pool->object(i);
+    o->recalculate_position(ms);
+  }
+
+  // Check for collisions
   for (int i = 0; i < this->object_pool->num(); ++i) {
     Object *o = this->object_pool->object(i);
 
-    o->recalculate_position(ms);
-
     // Check for boundary collisions
-
     if ( this->boundary->collides_left(o) ) {
       o->velocity_x = -o->velocity_x;
       o->position_x = this->boundary->collision_depth_left(o);
