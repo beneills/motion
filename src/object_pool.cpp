@@ -3,23 +3,14 @@
 #include <object.hpp>
 #include <object_pool.hpp>
 
-bool ObjectPool::add_object(Object *o) {
-  if (this->num_objects < 1000) {
-    this->objects[this->num_objects++] = new Object(*o);
-    return true;
-  } else {
-    return false;
-  }
+void ObjectPool::add_object(Object *o) {
+  this->objects.push_back(*o);
 }
 
 unsigned int ObjectPool::num() {
-  return this->num_objects;
+  return this->objects.size();
 }
 
 Object *ObjectPool::object(unsigned int i) {
-  return this->objects[i];
-}
-
-ObjectPool::ObjectPool() {
-  this->num_objects = 0;
+  return &this->objects[i];
 }

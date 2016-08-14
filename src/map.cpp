@@ -4,7 +4,8 @@
 #include <object_pool.hpp>
 
 bool Map::add_object(Object *o) {
-  return this->object_pool->add_object(o);
+  this->object_pool->add_object(o);
+  return true;
 }
 
 void Map::update(double ms) {
