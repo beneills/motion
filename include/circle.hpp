@@ -1,7 +1,9 @@
 #ifndef included_circle_hpp
 #define included_circle_hpp
 
-class Circle {
+#include <net.hpp>
+
+class Circle : public Net {
   double radius;
 
 public:
