@@ -15,6 +15,9 @@ public:
 
   // The net's maximum y coordinate, relative to the object's position_y.
   virtual double max_y() = 0;
+
+  // Can this net collide with another?
+  bool possibly_collides(Net *other);
 };
 
 #endif // included_net_hpp
