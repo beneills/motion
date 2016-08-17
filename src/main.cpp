@@ -2,11 +2,16 @@
 
 #include <boundary.hpp>
 #include <circle.hpp>
+#include <graphics.hpp>
 #include <map.hpp>
 #include <object.hpp>
 
 int main()
 {
+	// Graphics *g = new Graphics;
+	// g->demo();
+	// delete g;
+
 	std::cout << "Welcome to motion..." << std::endl;
 
   Boundary *boundary = new Boundary(100, 100);
