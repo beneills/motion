@@ -6,6 +6,7 @@
 #include <object.hpp>
 
 class ObjectPool {
+public:
   std::vector<Object> objects;
 
 public:

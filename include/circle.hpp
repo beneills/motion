@@ -4,6 +4,7 @@
 #include <net.hpp>
 
 class Circle : public Net {
+public:
   double radius;
 
 public:

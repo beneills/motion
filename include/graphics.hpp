@@ -3,6 +3,8 @@
 
 #include "SDL2/SDL.h"
 
+#include <map.hpp>
+
 class Graphics {
   SDL_Window *win;
   SDL_Renderer *ren;
@@ -11,6 +13,12 @@ class Graphics {
 public:
   // Demo graphics.
   bool demo();
+
+  // Render a map.
+  bool render(Map *map);
+
+  // Delay some milliseconds.
+  void delay(unsigned int ms);
 
   // Setup graphics.
   Graphics();

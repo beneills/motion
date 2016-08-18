@@ -15,6 +15,9 @@ public:
   // Update object positions, given time.
   void update(double ms);
 
+  // Objects vector.
+  std::vector<Object> *objects();
+
   // Pretty print all objects.
   void print_objects();
 

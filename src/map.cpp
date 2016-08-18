@@ -59,6 +59,10 @@ void Map::update(double ms) {
   }
 }
 
+std::vector<Object> *Map::objects() {
+  return &this->object_pool->objects;
+}
+
 void Map::print_objects() {
   std::cout << "map [";
 

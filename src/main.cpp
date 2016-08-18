@@ -8,9 +8,7 @@
 
 int main()
 {
-	// Graphics *g = new Graphics;
-	// g->demo();
-	// delete g;
+	Graphics *g = new Graphics;
 
 	std::cout << "Welcome to motion..." << std::endl;
 
@@ -35,9 +33,12 @@ int main()
   map->add_object(moving);
   map->add_object(solid);
 
-  for (int time = 0; time < 1000; time += 10) {
+  for (int time = 0; time < 300; time += 10) {
     map->print_objects();
     map->update(10);
+
+		g->render(map);
+		g->delay(100);
   }
 
 	return 0;

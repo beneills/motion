@@ -3,6 +3,7 @@
 #include <SDL2/SDL2_gfxPrimitives.h>
 
 #include <graphics.hpp>
+#include <map.hpp>
 
 bool Graphics::demo() {
   SDL_SetRenderDrawColor(this->ren, 0, 0, 0, 255);
@@ -15,6 +16,24 @@ bool Graphics::demo() {
   SDL_Delay(3000);
 
   return true;
+}
+
+bool Graphics::render(Map *map) {
+  SDL_SetRenderDrawColor(this->ren, 255, 255, 255, 255);
+  SDL_RenderClear(this->ren);
+
+
+  std::vector<Object>::iterator o;
+  for (o = map->objects()->begin() ; o != map->objects()->end(); o++ ) {
+    int result = filledCircleColor(this->ren, o->position_x, o->position_y, o->net->radius, 0xFF0000FF);
+    SDL_RenderPresent(this->ren);
+  }
+
+  return true;
+}
+
+void Graphics::delay(unsigned int ms) {
+  SDL_Delay(ms);
 }
 
 Graphics::Graphics() {
