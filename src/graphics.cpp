@@ -25,7 +25,7 @@ bool Graphics::render(Map *map) {
 
   std::vector<Object>::iterator o;
   for (o = map->objects()->begin() ; o != map->objects()->end(); o++ ) {
-    int result = filledCircleColor(this->ren, o->position_x, o->position_y, o->net->radius, 0xFF0000FF);
+    int result = o->net->draw(this->ren, o->position_x, o->position_y, 0xFF0000FF);
     SDL_RenderPresent(this->ren);
   }
 

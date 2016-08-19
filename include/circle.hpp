@@ -23,6 +23,9 @@ public:
   // Does this circle collide with another, given the relative distance between their object's positions.
   bool collides_circle(double position_x_delta, double position_y_delta, Circle *other);
 
+  // Draw the circle to an SDL renderer.
+  int draw(SDL_Renderer *ren, double position_x, double position_y, Uint32 color);
+
   // Instantiate a new circle, given a radius.
   Circle(double radius);
 };

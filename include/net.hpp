@@ -1,6 +1,8 @@
 #ifndef included_net_hpp
 #define included_net_hpp
 
+#include "SDL2/SDL.h"
+
 class Net {
 
 public:
@@ -18,6 +20,9 @@ public:
 
   // Can this net collide with another?
   bool possibly_collides(Net *other);
+
+  // Draw the net to an SDL renderer.
+  virtual int draw(SDL_Renderer *ren, double position_x, double position_y, Uint32 color) = 0;
 };
 
 #endif // included_net_hpp

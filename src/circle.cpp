@@ -1,3 +1,5 @@
+#include <SDL2/SDL2_gfxPrimitives.h>
+
 #include <circle.hpp>
 
 #define square(x) ((x)*(x))
@@ -19,9 +21,13 @@ double Circle::max_y() {
 }
 
 bool Circle::collides_circle(double position_x_delta, double position_y_delta, Circle *other) {
-      double square_distance = square( position_x_delta ) + square( position_y_delta );
+  double square_distance = square( position_x_delta ) + square( position_y_delta );
 
-      return square_distance < square( this->radius + other->radius );
+  return square_distance < square( this->radius + other->radius );
+}
+
+int Circle::draw(SDL_Renderer *ren, double position_x, double position_y, Uint32 color) {
+  return filledCircleColor(ren, position_x, position_y, this->radius, color);
 }
 
 Circle::Circle(double radius) {
