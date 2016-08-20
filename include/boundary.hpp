@@ -1,6 +1,8 @@
 #ifndef included_boundary_hpp
 #define included_boundary_hpp
 
+#include <SDL2/SDL2_gfxPrimitives.h>
+
 #include <object.hpp>
 
 // A square boundary for all objects.
@@ -36,6 +38,9 @@ public:
 
   // Does the object collide with any walls?
   bool collides(Object *o);
+
+  // Draw the boundary to an SDL renderer.
+  int draw(SDL_Renderer *ren, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 
   // Instantiate a new boundary object of given width and height.
   Boundary(double width, double height);

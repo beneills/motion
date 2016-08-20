@@ -1,3 +1,4 @@
+#include <iostream>
 #include <SDL2/SDL2_gfxPrimitives.h>
 
 #include <circle.hpp>

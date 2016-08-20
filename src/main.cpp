@@ -14,8 +14,8 @@ int main()
 
   Boundary *boundary = new Boundary(100, 100);
 
-  Circle *c1 = new Circle(1.0);
-  Circle *c2 = new Circle(1.1);
+  Circle *c1 = new Circle(10);
+  Circle *c2 = new Circle(30);
 
   Object *o1 = new Object(0, 0, 0, 0, 1, c1);
   Object *o2 = new Object(0, 2, 0, 0, 1, c2);
@@ -27,13 +27,13 @@ int main()
 
   Map *map = new Map(boundary);
 
-  Object *moving = new Object(3, 3, 1, 0, 1, c1);
-  Object *solid = new Object(60, 3, 0, 0, 1, c1);
+  Object *moving = new Object(3, 50, 1, 0, 1, c1);
+  Object *solid = new Object(60, 50, 0, 0, 1, c2);
 
   map->add_object(moving);
   map->add_object(solid);
 
-  for (int time = 0; time < 300; time += 10) {
+  for (int time = 0; time < 1000; time += 10) {
     map->print_objects();
     map->update(10);
 

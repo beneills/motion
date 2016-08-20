@@ -42,6 +42,17 @@ bool Boundary::collides(Object *o) {
     || this->collides_bottom(o);
 }
 
+int Boundary::draw(SDL_Renderer *ren, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
+  SDL_Rect rect;
+  rect.x = 0;
+  rect.y = 0;
+  rect.w = this->width;
+  rect.h = this->height;
+
+  SDL_SetRenderDrawColor(ren, r, g, b, a);
+  return SDL_RenderDrawRect(ren, &rect);
+}
+
 Boundary::Boundary(double width, double height) {
   this->width = width;
   this->height = height;

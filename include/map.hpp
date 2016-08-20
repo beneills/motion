@@ -1,6 +1,8 @@
 #ifndef included_map_hpp
 #define included_map_hpp
 
+#include <SDL2/SDL2_gfxPrimitives.h>
+
 #include <boundary.hpp>
 #include <object_pool.hpp>
 
@@ -20,6 +22,9 @@ public:
 
   // Pretty print all objects.
   void print_objects();
+
+  // Draw the map to an SDL renderer.
+  int draw(SDL_Renderer *ren);
 
   // Instantiate a map.
   Map(Boundary *boundary);

@@ -1,6 +1,5 @@
 #include <exception>
 #include <iostream>
-#include <SDL2/SDL2_gfxPrimitives.h>
 
 #include <graphics.hpp>
 #include <map.hpp>
@@ -15,21 +14,18 @@ bool Graphics::demo() {
 
   SDL_Delay(3000);
 
-  return true;
+  return 0 != result;
 }
 
 bool Graphics::render(Map *map) {
-  SDL_SetRenderDrawColor(this->ren, 255, 255, 255, 255);
-  SDL_RenderClear(this->ren);
+  SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
+  SDL_RenderClear(ren);
 
+  int result = map->draw(this->ren);
 
-  std::vector<Object>::iterator o;
-  for (o = map->objects()->begin() ; o != map->objects()->end(); o++ ) {
-    int result = o->net->draw(this->ren, o->position_x, o->position_y, 0xFF0000FF);
-    SDL_RenderPresent(this->ren);
-  }
+  SDL_RenderPresent(ren);
 
-  return true;
+  return 0 != result;
 }
 
 void Graphics::delay(unsigned int ms) {
