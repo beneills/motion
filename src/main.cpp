@@ -5,6 +5,7 @@
 #include <graphics.hpp>
 #include <map.hpp>
 #include <object.hpp>
+#include <timer.hpp>
 
 int main()
 {
@@ -27,19 +28,22 @@ int main()
 
   Map *map = new Map(boundary);
 
-  Object *moving = new Object(3, 50, 1, 0, 1, c1);
+  Object *moving = new Object(3, 50, 1, 1, 1, c1);
   Object *solid = new Object(60, 50, 0, 0, 1, c2);
 
   map->add_object(moving);
   map->add_object(solid);
 
-  for (int time = 0; time < 1000; time += 10) {
-    map->print_objects();
-    map->update(10);
+	int max_fps = 20;
+	Timer *t = new Timer;
 
+	t->start();
+	while (t->seconds() < 5) {
 		g->render(map);
-		g->delay(100);
+		map->update(t->ms_since_last_frame());
+		t->limit(max_fps);
   }
+	t->stop();
 
 	return 0;
 }

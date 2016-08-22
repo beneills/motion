@@ -1,7 +1,7 @@
 #ifndef included_net_hpp
 #define included_net_hpp
 
-#include "SDL2/SDL.h"
+#include <SDL2/SDL.h>
 
 class Net {
 

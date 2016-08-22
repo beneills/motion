@@ -1,7 +1,7 @@
 #ifndef included_graphics_hpp
 #define included_graphics_hpp
 
-#include "SDL2/SDL.h"
+#include <SDL2/SDL.h>
 
 #include <map.hpp>
 
