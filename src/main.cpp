@@ -13,13 +13,13 @@ int main()
 
 	std::cout << "Welcome to motion..." << std::endl;
 
-  Boundary *boundary = new Boundary(100, 100);
+  Boundary *boundary = new Boundary(400, 400);
 
   Circle *c1 = new Circle(10);
   Circle *c2 = new Circle(30);
 
-  Object *o1 = new Object(0, 0, 0, 0, 1, c1);
-  Object *o2 = new Object(0, 2, 0, 0, 1, c2);
+  Object *o1 = new Object(0, 0, 0, 0, 1, c1, nullptr);
+  Object *o2 = new Object(0, 2, 0, 0, 1, c2, nullptr);
 
   std::cout << "o1 collides with o2? " << o1->collides_object(o2) << std::endl;
 
@@ -28,8 +28,11 @@ int main()
 
   Map *map = new Map(boundary);
 
-  Object *moving = new Object(3, 50, 1, 1, 1, c1);
-  Object *solid = new Object(60, 50, 0, 0, 1, c2);
+	Label *l1 = new Label(255, 0, 0, 255, "ball 1");
+	Label *l2 = new Label(0, 255, 0, 255, "ball 2");
+
+  Object *moving = new Object(3, 50, 100, 200, 1, c1, l1);
+  Object *solid = new Object(60, 50, -300, 20, 1, c2, l2);
 
   map->add_object(moving);
   map->add_object(solid);

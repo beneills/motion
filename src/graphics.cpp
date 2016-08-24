@@ -4,19 +4,6 @@
 #include <graphics.hpp>
 #include <map.hpp>
 
-bool Graphics::demo() {
-  SDL_SetRenderDrawColor(this->ren, 0, 0, 0, 255);
-  SDL_RenderClear(this->ren);
-
-  int result = filledCircleColor(this->ren, 100, 100, 50, 0xFF0000FF);
-
-  SDL_RenderPresent(this->ren);
-
-  SDL_Delay(3000);
-
-  return 0 != result;
-}
-
 bool Graphics::render(Map *map) {
   SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
   SDL_RenderClear(ren);
@@ -40,7 +27,7 @@ Graphics::Graphics() {
     throw std::runtime_error("SDL_Init error");
   }
 
-  this->win = SDL_CreateWindow("motion", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+  this->win = SDL_CreateWindow("motion", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_RESIZABLE);
   if (this->win == nullptr){
     std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
     SDL_Quit();

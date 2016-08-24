@@ -49,6 +49,11 @@ int Boundary::draw(SDL_Renderer *ren, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
   rect.w = this->width;
   rect.h = this->height;
 
+  // Draw shaded background
+  SDL_SetRenderDrawColor(ren, 200, 200, 200, 255);
+  SDL_RenderFillRect(ren, &rect);
+
+  // Draw border
   SDL_SetRenderDrawColor(ren, r, g, b, a);
   return SDL_RenderDrawRect(ren, &rect);
 }

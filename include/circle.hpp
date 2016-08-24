@@ -1,6 +1,7 @@
 #ifndef included_circle_hpp
 #define included_circle_hpp
 
+#include <label.hpp>
 #include <net.hpp>
 
 class Circle : public Net {
@@ -24,7 +25,7 @@ public:
   bool collides_circle(double position_x_delta, double position_y_delta, Circle *other);
 
   // Draw the circle to an SDL renderer.
-  int draw(SDL_Renderer *ren, double position_x, double position_y, Uint32 color);
+  int draw(SDL_Renderer *ren, double position_x, double position_y, Label *label);
 
   // Instantiate a new circle, given a radius.
   Circle(double radius);

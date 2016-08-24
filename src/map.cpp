@@ -79,7 +79,7 @@ int Map::draw(SDL_Renderer *ren) {
 
   std::vector<Object>::iterator o;
   for (o = this->objects()->begin() ; o != this->objects()->end(); o++ ) {
-    int result = o->net->draw(ren, o->position_x, o->position_y, 0xFF0000FF);
+    int result = o->net->draw(ren, o->position_x, o->position_y, o->label);
 
     if ( 0 != result ) {
       return result;

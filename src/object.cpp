@@ -35,8 +35,8 @@ void Object::rotate(double component_x, double component_y) {
 }
 
 void Object::recalculate_position(double ms) {
-  this->position_x += this->velocity_x * ms;
-  this->position_y += this->velocity_y * ms;
+  this->position_x += ( this->velocity_x * ms ) / 1000;
+  this->position_y += ( this->velocity_y * ms ) / 1000;
 }
 
 bool Object::collides_object(Object *other) {
@@ -45,7 +45,7 @@ bool Object::collides_object(Object *other) {
         other->net);
 }
 
-Object::Object(double position_x, double position_y, double velocity_x, double velocity_y, double mass, Circle *net) {
+Object::Object(double position_x, double position_y, double velocity_x, double velocity_y, double mass, Circle *net, Label *label) {
   this->position_x = position_x;
   this->position_y = position_y;
 
@@ -54,4 +54,10 @@ Object::Object(double position_x, double position_y, double velocity_x, double v
   this->mass = mass;
 
   this->net = new Circle(*net);
+
+  if ( label == nullptr ) {
+    this->label = new Label(200, 200, 200, 255, "default");
+  } else {
+    this->label = new Label(*label);
+  }
 }

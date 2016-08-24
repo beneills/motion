@@ -27,8 +27,8 @@ bool Circle::collides_circle(double position_x_delta, double position_y_delta, C
   return square_distance < square( this->radius + other->radius );
 }
 
-int Circle::draw(SDL_Renderer *ren, double position_x, double position_y, Uint32 color) {
-  return filledCircleColor(ren, position_x, position_y, this->radius, color);
+int Circle::draw(SDL_Renderer *ren, double position_x, double position_y, Label *label) {
+  return filledCircleColor(ren, position_x, position_y, this->radius, label->color());
 }
 
 Circle::Circle(double radius) {

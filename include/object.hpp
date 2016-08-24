@@ -2,6 +2,7 @@
 #define included_object_hpp
 
 #include <circle.hpp>
+#include <label.hpp>
 
 class Object {
 public:
@@ -14,6 +15,8 @@ public:
   double mass;
 
   Circle *net;
+
+  Label *label;
 
 public:
   // The magnitude of the velocity.
@@ -41,7 +44,7 @@ public:
   bool collides_object(Object *other);
 
   // Instantiate an object given its position/velocity data and a net.
-  Object(double position_x, double position_y, double velocity_x, double velocity_y, double mass, Circle *net);
+  Object(double position_x, double position_y, double velocity_x, double velocity_y, double mass, Circle *net, Label *label);
 };
 
 #endif // included_object_hpp
