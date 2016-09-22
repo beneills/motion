@@ -14,33 +14,21 @@ int main()
 
 	std::cout << "Welcome to motion..." << std::endl;
 
-  Boundary *boundary = new Boundary(400, 400);
+  Boundary *boundary = new Boundary(150, 60);
 
-  Circle *c1 = new Circle(10);
-  Circle *c2 = new Circle(30);
-	Rectangle *r1 = new Rectangle(20, 20);
-
-  Object *o1 = new Object(0, 0, 0, 0, 1, c1, nullptr);
-  Object *o2 = new Object(0, 2, 0, 0, 1, c2, nullptr);
-
-  std::cout << "o1 collides with o2? " << o1->collides_object(o2) << std::endl;
-
-  std::cout << "o1 collides with boundary? " << boundary->collides(o1) << std::endl;
-  std::cout << "o2 collides with boundary? " << boundary->collides(o2) << std::endl;
-
-  Map *map = new Map(boundary);
+  Circle *c1 = new Circle(25);
+  Circle *c2 = new Circle(25);
 
 	Label *l1 = new Label(255, 0, 0, 255, "ball 1");
 	Label *l2 = new Label(0, 255, 0, 255, "ball 2");
-	Label *l3 = new Label(0, 0, 255, 255, "square");
 
-  Object *moving = new Object(3, 50, 100, 200, 1, c1, l1);
-  Object *solid = new Object(60, 50, -300, 20, 1, c2, l2);
-	//Object *square = new Object(100, 100, -40, -40, 1, r1, l3);
+  Object *ball1 = new Object(30, 30, 20, 0, 1, c1, l1);
+  Object *ball2 = new Object(100, 30, -20, 0, 1, c2, l2);
 
-  map->add_object(moving);
-  map->add_object(solid);
-	//map->add_object(square);
+	Map *map = new Map(boundary);
+
+  map->add_object(ball1);
+  map->add_object(ball2);
 
 	int max_fps = 20;
 	Timer *t = new Timer;

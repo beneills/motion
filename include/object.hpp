@@ -40,6 +40,9 @@ public:
   // Recalculate the object's position, given elapsed time since last calculation.
   void recalculate_position(double ms);
 
+  // Recalculate the object position, but rewinding.
+  void rewind_position(double ms);
+
   // Does this object collide with another?
   bool collides_object(Object *other);
 

@@ -39,6 +39,10 @@ void Object::recalculate_position(double ms) {
   this->position_y += ( this->velocity_y * ms ) / 1000;
 }
 
+void Object::rewind_position(double ms) {
+  recalculate_position(-ms);
+}
+
 bool Object::collides_object(Object *other) {
       return this->net->collides_circle(other->position_x - this->position_x,
         other->position_y - this->position_y,

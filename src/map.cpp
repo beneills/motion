@@ -3,6 +3,10 @@
 #include <map.hpp>
 #include <object_pool.hpp>
 
+#define square(x) ((x)*(x))
+#define modulus(x, y) sqrt( square(x) + square(y) )
+#define dot(x1, y1, x2, y2) ((x1) * (x2) + (y1) * (y2))
+
 bool Map::add_object(Object *o) {
   this->object_pool->add_object(o);
   return true;
@@ -40,22 +44,48 @@ void Map::update(double ms) {
       o->position_y = this->boundary->height - o->net->radius - this->boundary->collision_depth_bottom(o);
     }
 
-    // // Check for other object collisions
-    // for (int j = 0; j < this->object_pool->num(); ++j) {
-    //   if ( j != i ) {
-    //     Object *other = this->object_pool->object(j);
-    //
-    //     if ( o->collides_object(other) ) {
-    //       std::cout << "object collision: " << i << " with " << j << std::endl;
-    //
-    //       // TODO properly work out bounce direction
-    //       double delta_x = other->position_x - this->position_x;
-    //       double delta_y = other->position_y - this->position_y;
-    //
-    //
-    //     }
-    //   }
-    // }
+    // Check for other object collisions
+    for (int j = 0; j < this->object_pool->num(); ++j) {
+      if ( j != i ) {
+        Object *other = this->object_pool->object(j);
+
+        if ( o->collides_object(other) ) {
+          std::cout << "object collision: " << i << " with " << j << std::endl;
+
+          // Rewind until it doesn't collide
+          double rewind_ms;
+          for (rewind_ms = 0; rewind_ms < ms && o->collides_object(other); rewind_ms += ms/1000) {
+            o->rewind_position(ms/1000);
+            other->rewind_position(ms/1000);
+          }
+
+          // Based on http://www.gamasutra.com/view/feature/131424/pool_hall_lessons_fast_accurate_.php?page=3
+
+          // Determine normalised vector d from centre of o to centre of other
+          double v_x = other->position_x - o->position_x;
+          double v_y = other->position_y - o->position_y;
+          double d_x = v_x / modulus(v_x, v_y);
+          double d_y = v_y / modulus(v_x, v_y);
+
+          // Find component of both velocity vectors with d
+          float a_1 = dot(d_x, d_y, o->velocity_x, o->velocity_y);
+          float a_2 = dot(d_x, d_y, other->velocity_x, other->velocity_y);
+
+          // Generate intermediate constant p
+          float p = (2.0 * (a_1 - a_2)) / (o->mass + other->mass);
+
+          // Compute new velocities
+          o->velocity_x = o->velocity_x - p * other->mass * d_x;
+          o->velocity_y = o->velocity_y - p * other->mass * d_y;
+          other->velocity_x = other->velocity_x + p * o->mass * d_x;
+          other->velocity_y = other->velocity_y + p * o->mass * d_y;
+
+          // Fast forward to make up for the time we rewinded
+          o->recalculate_position(ms - rewind_ms);
+          other->recalculate_position(ms - rewind_ms);
+        }
+      }
+    }
   }
 }
 
