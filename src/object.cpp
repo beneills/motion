@@ -65,3 +65,7 @@ Object::Object(double position_x, double position_y, double velocity_x, double v
     this->label = new Label(*label);
   }
 }
+
+Object::~Object() {
+  delete this->label;
+}

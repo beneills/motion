@@ -48,6 +48,9 @@ public:
 
   // Instantiate an object given its position/velocity data and a net.
   Object(double position_x, double position_y, double velocity_x, double velocity_y, double mass, Circle *net, Label *label);
+
+  // Delete the object.
+  ~Object();
 };
 
 #endif // included_object_hpp

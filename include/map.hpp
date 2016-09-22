@@ -28,6 +28,9 @@ public:
 
   // Instantiate a map.
   Map(Boundary *boundary);
+
+  // Delete the map.
+  ~Map();
 };
 
 #endif // included_map_hpp

@@ -41,5 +41,12 @@ int main()
   }
 	t->stop();
 
+	delete t;
+	delete map;
+	delete l1;
+	delete l2;
+	delete c1;
+	delete c2;
+
 	return 0;
 }

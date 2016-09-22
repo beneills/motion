@@ -123,3 +123,8 @@ Map::Map(Boundary *boundary) {
   this->boundary = new Boundary(*boundary);
   this->object_pool = new ObjectPool;
 }
+
+Map::~Map() {
+  delete this->boundary;
+  delete this->object_pool;
+}
